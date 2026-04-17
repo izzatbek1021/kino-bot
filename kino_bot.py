@@ -7,7 +7,7 @@ from telegram.ext import (
     MessageHandler,
     CallbackQueryHandler,
     CallbackContext,
-    Filters
+    filters
 )
 
 from database import add_movie, get_movie, delete_movie, count_movies
@@ -248,10 +248,10 @@ def main():
 
     dp.add_handler(CallbackQueryHandler(check_sub, pattern="check_sub"))
 
-    dp.add_handler(MessageHandler(Filters.regex(r"^K\d+"), kino_kod))
-    dp.add_handler(MessageHandler(Filters.video, admin_video))
+    dp.add_handler(MessageHandler(filters.Regex(r"^K\d+"), kino_kod))
+    dp.add_handler(MessageHandler(filters.VIDEO, admin_video))
     dp.add_handler(MessageHandler(
-        Filters.text | Filters.photo | Filters.video,
+        filters.TEXT | filters.PHOTO | filters.VIDEO,
         reklama_send
     ))
 
